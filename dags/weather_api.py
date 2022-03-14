@@ -6,8 +6,9 @@ from config import Host, API_KEY
 def weather_api_method():
 
     url = "https://community-open-weather-map.p.rapidapi.com/weather"
+
     #list of states
-    state_list = ['goa','uttar Pradesh','gujarat','kerala','Delhi','Panjab','Maharashtra','Rajasthan','Bihar','Tripura']
+    state_list = ['uttar Pradesh','Delhi','Panjab','Maharashtra','Rajasthan','Bihar','Tripura','goa','gujarat','kerala']
     df = pd.DataFrame(columns=["State", "Description", "Temperature", "Feels_Like_Temperature", "Min_Temperature", "Max_Temperature", "Humidity", "Clouds"])
     #iterating over statelist and append the response value in dataframe
     for state in state_list:
@@ -27,10 +28,13 @@ def weather_api_method():
             print("Request limit exceeds")
 
     path = "/usr/local/airflow/store_files_airflow"
+    # print(df.head())
    #check file exist or not if exist remove and create new file else create file
     if not os.path.isfile(os.path.join(path,'/weather_data.csv')):
         df.to_csv(path+'/weather_data.csv',index=False)
     else:
         os.remove(os.path.join(path,'/weather_data.csv'))
         df.to_csv(os.path.join(path,'/weather_data.csv'),index=False)
+
+# weather_api_method()
 

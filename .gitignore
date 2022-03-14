@@ -5,5 +5,7 @@ dags/.Ds_Store
 #remove tempfiles
 .Ds_Store
 .idea
+LICENSE
+README.md
 # Python
 __pycache__
